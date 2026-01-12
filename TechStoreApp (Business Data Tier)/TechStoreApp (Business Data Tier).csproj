@@ -46,5 +46,15 @@
   <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TechStoreApp%28Core%29\TechStoreApp%28Core%29.csproj">
+      <Project>{48e648f4-564c-4325-a9d0-28903180d969}</Project>
+      <Name>TechStoreApp%28Core%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechStoreDataTier\TechStoreDataTier.csproj">
+      <Project>{84e354d1-052c-42fb-b2cb-a4e876e7746f}</Project>
+      <Name>TechStoreDataTier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

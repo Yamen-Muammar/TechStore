@@ -48,5 +48,11 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TechStoreApp%28Core%29\TechStoreApp%28Core%29.csproj">
+      <Project>{48e648f4-564c-4325-a9d0-28903180d969}</Project>
+      <Name>TechStoreApp%28Core%29</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
