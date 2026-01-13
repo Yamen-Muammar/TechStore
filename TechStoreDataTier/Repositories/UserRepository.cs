@@ -28,7 +28,36 @@ namespace TechStoreDataTier.Repositories
 
         public User Login(string email,string hasedPassword)
         {
-            throw new NotImplementedException();
+            User user = null;
+            try
+            {
+                string query = "select * from Users where Email = @email and HashedPassword =@hpassword ";
+                using (SqlConnection conn = new SqlConnection(DataBaseSettings.ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@hpassword", hasedPassword);
+
+
+                    conn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        user = new User((int)reader["Id"], reader["First_Name"].ToString(), reader["Last_Name"].ToString(), reader["PhoneNumber"].ToString(), reader["Email"].ToString(), reader["HashedPassword"].ToString(), (int)reader["Permission"]);
+                    }
+
+                    reader.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in Login by Id Function <User Repository>" + ex);
+            }
+
+            return user;
         }
         public List<User> GetAllUsers()
         {
