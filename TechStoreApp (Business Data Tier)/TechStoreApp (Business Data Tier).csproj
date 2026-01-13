@@ -42,10 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TechStoreApp%28Core%29\TechStoreApp%28Core%29.csproj">
       <Project>{48e648f4-564c-4325-a9d0-28903180d969}</Project>
