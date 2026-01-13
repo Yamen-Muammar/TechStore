@@ -153,7 +153,7 @@ namespace TechStoreApp__Business_Data_Tier_.Services
                 return false;
             }
 
-            if (!user.Email.Contains("@") && string.IsNullOrWhiteSpace(user.Email))
+            if (!user.Email.Contains("@") || string.IsNullOrWhiteSpace(user.Email))
             {
                 Debug.WriteLine("**Error >> Invalid Email**");
                 return false;
