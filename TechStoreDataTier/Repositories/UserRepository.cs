@@ -15,8 +15,42 @@ namespace TechStoreDataTier.Repositories
         // Insert
         public int Add(User user)
         {
-            throw new NotImplementedException();
+            int newUserId = -1;
+
+            try
+            {
+                string query = "insert into Users (First_Name, Last_Name," +
+                    "PhoneNumber, Email, HashedPassword, Permission)" +
+                    "Values  (@firstName, @lastName, @phoneNumber, @email, @hpassword, @permission)" +
+                    " select SCOPE_IDENTITY();";
+
+                using (SqlConnection conn = new SqlConnection(DataBaseSettings.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
+                    cmd.Parameters.AddWithValue("@phoneNumber", user.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    cmd.Parameters.AddWithValue("@hpassword", user.HashedPassword);
+                    cmd.Parameters.AddWithValue("@permission", user.Permission);                   
+
+                    conn.Open();
+
+                    object retrundObj = cmd.ExecuteScalar();
+
+                    bool retrundId = int.TryParse(retrundObj.ToString(),out newUserId);                  
+                }               
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine("Error in Add Function <User Repository>" + ex);
+            }
+
+            return newUserId;
         }
+    
+
         
         // Delete
         public bool Delete(int id)

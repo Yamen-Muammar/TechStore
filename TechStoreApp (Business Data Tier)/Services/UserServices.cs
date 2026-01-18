@@ -68,7 +68,7 @@ namespace TechStoreApp__Business_Data_Tier_.Services
             }
 
             if (_userRepo.IsUserExists(user.Email))
-            {
+            {               
                 return false;
             }
 
