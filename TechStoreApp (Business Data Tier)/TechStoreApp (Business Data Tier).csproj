@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PermissionServices.cs" />
     <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup />
