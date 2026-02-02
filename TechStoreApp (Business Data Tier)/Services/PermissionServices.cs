@@ -19,8 +19,22 @@ namespace TechStoreApp__Business_Data_Tier_.Services
 
         public static Permission GetPermissionById(int id)
         {
+            int passedID = -1;
+            bool isValid = int.TryParse(id.ToString(), out passedID);
+
+            if (!isValid)
+            {
+                return null;
+            }
+
             PermissionRepository permissionRepository = new PermissionRepository();
             return permissionRepository.GetPermissionById(id);
+        }
+
+        public static Permission GetPermissionByName(string name)
+        {            
+            PermissionRepository permissionRepository = new PermissionRepository();
+            return permissionRepository.GetPermissionByCode(name);
         }
     }
 }

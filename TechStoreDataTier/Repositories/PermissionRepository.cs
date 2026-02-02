@@ -49,7 +49,33 @@ namespace TechStoreDataTier.Repositories
 
         public Permission GetPermissionByCode(string name)
         {
-            throw new NotImplementedException();
+            Permission permission = null;
+            try
+            {
+                string query = "SELECT * FROM Permissions WHERE PermissionName = @PermissionName";
+
+                using (SqlConnection conn = new SqlConnection(DataBaseSettings.ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@PermissionName", name);
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        permission= new Permission((int)reader["Id"], reader["PermissionName"].ToString(), (int)reader["PermissionCode"]);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error in GetPermissionByCode: " + ex.Message);
+            }
+
+            return permission;
         }
 
         public Permission GetPermissionById(int id)
