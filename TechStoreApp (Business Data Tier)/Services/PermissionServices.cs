@@ -16,5 +16,11 @@ namespace TechStoreApp__Business_Data_Tier_.Services
 
             return permissionRepository.GetAllPermissions();
        } 
+
+        public static Permission GetPermissionById(int id)
+        {
+            PermissionRepository permissionRepository = new PermissionRepository();
+            return permissionRepository.GetPermissionById(id);
+        }
     }
 }
